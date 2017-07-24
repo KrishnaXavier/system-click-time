@@ -128,7 +128,7 @@ public class ConfigurationWindow extends javax.swing.JFrame {
         System.out.println("statusClickPrimaryDouble: "+statusClickPrimaryDouble);
         System.out.println("statusClickDrag: "+statusClickDrag);
         System.out.println("------------------------------------------");
-    }
+    }       
 
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
@@ -136,7 +136,7 @@ public class ConfigurationWindow extends javax.swing.JFrame {
 
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
-        jTextField1 = new javax.swing.JTextField();
+        time = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         drag = new javax.swing.JToggleButton();
         doublePrimary = new javax.swing.JToggleButton();
@@ -161,10 +161,10 @@ public class ConfigurationWindow extends javax.swing.JFrame {
         jLabel1.setText("Time for Click (seconds)");
         getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 352, 580, 37));
 
-        jTextField1.setFont(new java.awt.Font("Segoe UI Light", 1, 24)); // NOI18N
-        jTextField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
-        jTextField1.setText("3");
-        getContentPane().add(jTextField1, new org.netbeans.lib.awtextra.AbsoluteConstraints(239, 308, 120, -1));
+        time.setFont(new java.awt.Font("Segoe UI Light", 1, 24)); // NOI18N
+        time.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        time.setText("3");
+        getContentPane().add(time, new org.netbeans.lib.awtextra.AbsoluteConstraints(239, 308, 120, -1));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI Light", 1, 36)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(102, 102, 255));
@@ -306,8 +306,8 @@ public class ConfigurationWindow extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JTextField jTextField1;
     private javax.swing.JToggleButton primary;
     private javax.swing.JToggleButton secondary;
+    private javax.swing.JTextField time;
     // End of variables declaration//GEN-END:variables
 }
