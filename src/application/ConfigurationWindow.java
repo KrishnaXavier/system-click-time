@@ -8,70 +8,18 @@ import javax.swing.JToggleButton;
  * @author Krishna Pessoal
  */
 public class ConfigurationWindow extends javax.swing.JFrame {    
-    private static int     timeClick                = 3000;
-    private static boolean statusTimeClick          = false;     
-    private static boolean statusClickPrimary       = false;  /* Button Left Mouse          */
-    private static boolean statusClickSecondary     = false; /* Button Right Mouse          */
-    private static boolean statusClickPrimaryDouble = false; /* Button Left Double Mouse    */
-    private static boolean statusClickDrag          = false; /* Function Drag Itens/Folder  */
+    public static Configuration config;
     private static JToggleButton[] configsBtn;
     private static boolean[] configs;
     
     public ConfigurationWindow() {
+        config = new Configuration();
         initComponents();
         getContentPane().setBackground(new Color(241,242,242));
         setResizable(false);
-        configsBtn = new JToggleButton[]{enableSystem, primary, doublePrimary, secondary, drag};        
+        configsBtn = new  JToggleButton[]{enableSystem, primary, doublePrimary, secondary, drag};        
         styleButton(configsBtn);                               
-    }
-
-    public static void setTimeClick(int timeClick) {
-        ConfigurationWindow.timeClick = timeClick;
-    }
-
-    public static void setStatusTimeClick(boolean statusTimeClick) {
-        ConfigurationWindow.statusTimeClick = statusTimeClick;
-    }
-
-    public static void setStatusClickPrimary(boolean statusClickPrimary) {
-        ConfigurationWindow.statusClickPrimary = statusClickPrimary;
-    }
-
-    public static void setStatusClickSecondary(boolean statusClickSecondary) {
-        ConfigurationWindow.statusClickSecondary = statusClickSecondary;
-    }
-
-    public static void setStatusClickPrimaryDouble(boolean statusClickPrimaryDouble) {
-        ConfigurationWindow.statusClickPrimaryDouble = statusClickPrimaryDouble;
-    }
-
-    public static void setStatusClickDrag(boolean statusClickDrag) {
-        ConfigurationWindow.statusClickDrag = statusClickDrag;
-    }
-
-    public static int getTimeClick() {
-        return timeClick;
-    }
-
-    public static boolean isStatusTimeClick() {
-        return statusTimeClick;
-    }
-
-    public static boolean isStatusClickPrimary() {
-        return statusClickPrimary;
-    }
-
-    public static boolean isStatusClickSecondary() {
-        return statusClickSecondary;
-    }
-
-    public static boolean isStatusClickPrimaryDouble() {
-        return statusClickPrimaryDouble;
-    }
-
-    public static boolean isStatusClickDrag() {
-        return statusClickDrag;
-    }        
+    }            
     
     private void styleButton(JToggleButton[] button){
         for(int i=0; i < button.length; i++){
@@ -80,56 +28,59 @@ public class ConfigurationWindow extends javax.swing.JFrame {
         }
     }
     
-    private void control(int id){
+    private static void control(int id){
         resetSelected();
         configsBtn[id].setSelected(true);        
         resetStatus();
         
         switch (id) {
             case 0:
-                statusTimeClick = true;
+                config.setStatusTimeClick(true);
                 break;
             case 1:
-                statusClickPrimary  = true;
+                config.setStatusClickPrimary(true);
                 break;
             case 2:
-                statusClickSecondary = true;
+                config.setStatusClickSecondary(true);
                 break;
             case 3:
-                statusClickPrimaryDouble = true;
+                config.setStatusClickPrimaryDouble(true);
                 break;     
             case 4:
-                statusClickDrag = true;
+                config.setStatusClickDrag(true);
                 break;               
         }        
         console();
     }
     
-    private void resetSelected(){
+    private static void resetSelected(){
         for(int i=1; i < configsBtn.length; i++){
             configsBtn[i].setSelected(false);                        
         }
     }
     
-    private void resetStatus(){
-        statusClickPrimary = statusClickSecondary = statusClickPrimaryDouble = statusClickDrag = false;
+    private static void resetStatus(){
+        config.setStatusTimeClick(false);
+        config.setStatusClickSecondary(false);
+        config.setStatusClickPrimaryDouble(false);
+        config.setStatusClickDrag(false);
     }
     
-    private void enableBtn(boolean status){        
+    private static void enableBtn(boolean status){        
         for(int i=1; i < configsBtn.length; i++){
             configsBtn[i].setEnabled(status);                        
-        }        
+        }                
     }
     
-    private void console(){
-        System.out.println("statusTimeClick: "+statusTimeClick);
-        System.out.println("statusClickPrimary: "+statusClickPrimary);
-        System.out.println("statusClickSecondary: "+statusClickSecondary);
-        System.out.println("statusClickPrimaryDouble: "+statusClickPrimaryDouble);
-        System.out.println("statusClickDrag: "+statusClickDrag);
+    private static void console(){
+        System.out.println("statusTimeClick: "+config.isStatusTimeClick());
+        System.out.println("statusClickPrimary: "+config.isStatusClickPrimary());
+        System.out.println("statusClickSecondary: "+config.isStatusClickSecondary());
+        System.out.println("statusClickPrimaryDouble: "+config.isStatusClickPrimaryDouble());
+        System.out.println("statusClickDrag: "+config.isStatusClickDrag());
         System.out.println("------------------------------------------");
-    }       
-
+    }
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -138,11 +89,12 @@ public class ConfigurationWindow extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         time = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
-        drag = new javax.swing.JToggleButton();
         doublePrimary = new javax.swing.JToggleButton();
         primary = new javax.swing.JToggleButton();
         secondary = new javax.swing.JToggleButton();
         enableSystem = new javax.swing.JToggleButton();
+        drag = new javax.swing.JToggleButton();
+        confirmTime = new javax.swing.JButton();
 
         jLabel2.setFont(new java.awt.Font("Segoe UI Light", 1, 36)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(102, 102, 255));
@@ -164,25 +116,13 @@ public class ConfigurationWindow extends javax.swing.JFrame {
         time.setFont(new java.awt.Font("Segoe UI Light", 1, 24)); // NOI18N
         time.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         time.setText("3");
-        getContentPane().add(time, new org.netbeans.lib.awtextra.AbsoluteConstraints(239, 308, 120, -1));
+        getContentPane().add(time, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 310, 70, -1));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI Light", 1, 36)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(102, 102, 255));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("System of Click for Time");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 21, 580, 37));
-
-        drag.setBackground(new java.awt.Color(204, 204, 204));
-        drag.setFont(new java.awt.Font("Segoe UI Light", 1, 14)); // NOI18N
-        drag.setText("Drag");
-        drag.setEnabled(false);
-        drag.setFocusable(false);
-        drag.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                dragActionPerformed(evt);
-            }
-        });
-        getContentPane().add(drag, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 231, 199, 40));
 
         doublePrimary.setBackground(new java.awt.Color(204, 204, 204));
         doublePrimary.setFont(new java.awt.Font("Segoe UI Light", 1, 14)); // NOI18N
@@ -204,6 +144,11 @@ public class ConfigurationWindow extends javax.swing.JFrame {
         primary.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 primaryActionPerformed(evt);
+            }
+        });
+        primary.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                primaryKeyPressed(evt);
             }
         });
         getContentPane().add(primary, new org.netbeans.lib.awtextra.AbsoluteConstraints(91, 185, 199, 40));
@@ -230,13 +175,35 @@ public class ConfigurationWindow extends javax.swing.JFrame {
         });
         getContentPane().add(enableSystem, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 110, 210, -1));
 
+        drag.setBackground(new java.awt.Color(204, 204, 204));
+        drag.setFont(new java.awt.Font("Segoe UI Light", 1, 14)); // NOI18N
+        drag.setText("Drag");
+        drag.setEnabled(false);
+        drag.setFocusable(false);
+        drag.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                dragActionPerformed(evt);
+            }
+        });
+        getContentPane().add(drag, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 231, 199, 40));
+
+        confirmTime.setBackground(new java.awt.Color(204, 204, 204));
+        confirmTime.setFont(new java.awt.Font("Segoe UI Light", 1, 14)); // NOI18N
+        confirmTime.setText("Confirm Time");
+        confirmTime.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                confirmTimeActionPerformed(evt);
+            }
+        });
+        getContentPane().add(confirmTime, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 310, 170, 40));
+
         setSize(new java.awt.Dimension(616, 439));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void enableSystemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enableSystemActionPerformed
-        boolean selected = enableSystem.isSelected();        
-        statusTimeClick = selected;
+        boolean selected = enableSystem.isSelected();
+        config.setStatusTimeClick(selected);
         if(selected)
             enableBtn(true);                        
         else{
@@ -260,9 +227,17 @@ public class ConfigurationWindow extends javax.swing.JFrame {
         control(3);
     }//GEN-LAST:event_secondaryActionPerformed
 
+    private void primaryKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_primaryKeyPressed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_primaryKeyPressed
+
     private void dragActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dragActionPerformed
-        control(4);
+        // TODO add your handling code here:
     }//GEN-LAST:event_dragActionPerformed
+
+    private void confirmTimeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmTimeActionPerformed
+        config.setTimeClick(Integer.parseInt(time.getText()) * 1000);
+    }//GEN-LAST:event_confirmTimeActionPerformed
 
     /**
      * @param args the command line arguments
@@ -300,14 +275,15 @@ public class ConfigurationWindow extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JToggleButton doublePrimary;
-    private javax.swing.JToggleButton drag;
-    private javax.swing.JToggleButton enableSystem;
+    private javax.swing.JButton confirmTime;
+    private static javax.swing.JToggleButton doublePrimary;
+    private static javax.swing.JToggleButton drag;
+    private static javax.swing.JToggleButton enableSystem;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JToggleButton primary;
-    private javax.swing.JToggleButton secondary;
-    private javax.swing.JTextField time;
+    private static javax.swing.JToggleButton primary;
+    private static javax.swing.JToggleButton secondary;
+    private static javax.swing.JTextField time;
     // End of variables declaration//GEN-END:variables
 }

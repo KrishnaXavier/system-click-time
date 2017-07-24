@@ -15,7 +15,7 @@ public class ClickTime {
     public static boolean statusClickDragFirstPass = true;
     private static final int INTERVALCLICK = 50;    
 
-    public static ConfigurationWindow config = new ConfigurationWindow();    
+    public static Configuration config = new Configuration();    
     
     public static String amb = "dev";
 
@@ -31,7 +31,8 @@ public class ClickTime {
         }        
     }
 
-    public static void mousePositionReading() {        
+    public static void mousePositionReading() {
+        System.out.println("isStatusTimeClic: "+config.isStatusTimeClick());
         if(config.isStatusTimeClick()){            
             java.awt.Point p = java.awt.MouseInfo.getPointerInfo().getLocation();
 
