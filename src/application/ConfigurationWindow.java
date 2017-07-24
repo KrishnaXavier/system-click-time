@@ -14,19 +14,15 @@ public class ConfigurationWindow extends javax.swing.JFrame {
     private static boolean statusClickSecondary     = false; /* Button Right Mouse          */
     private static boolean statusClickPrimaryDouble = false; /* Button Left Double Mouse    */
     private static boolean statusClickDrag          = false; /* Function Drag Itens/Folder  */
-    private static JToggleButton[] configs;
+    private static JToggleButton[] configsBtn;
+    private static boolean[] configs;
     
     public ConfigurationWindow() {
         initComponents();
         getContentPane().setBackground(new Color(241,242,242));
         setResizable(false);
-        configs = new JToggleButton[]{enableSystem, primary, doublePrimary, secondary, drag};
-        styleButton(configs);       
-        
-        System.out.println(enableSystem.isSelected());
-        //enableSystem.setSelected(true);
-        //enableSystem.setEnabled(false);
-        
+        configsBtn = new JToggleButton[]{enableSystem, primary, doublePrimary, secondary, drag};        
+        styleButton(configsBtn);                               
     }
 
     public static void setTimeClick(int timeClick) {
@@ -85,21 +81,53 @@ public class ConfigurationWindow extends javax.swing.JFrame {
     }
     
     private void control(int id){
-        reset();
-        configs[id].setSelected(true);
+        resetSelected();
+        configsBtn[id].setSelected(true);        
+        resetStatus();
+        
+        switch (id) {
+            case 0:
+                statusTimeClick = true;
+                break;
+            case 1:
+                statusClickPrimary  = true;
+                break;
+            case 2:
+                statusClickSecondary = true;
+                break;
+            case 3:
+                statusClickPrimaryDouble = true;
+                break;     
+            case 4:
+                statusClickDrag = true;
+                break;               
+        }        
+        console();
     }
     
-    private void reset(){
-        for(int i=1; i < configs.length; i++){
-            configs[i].setSelected(false);                        
+    private void resetSelected(){
+        for(int i=1; i < configsBtn.length; i++){
+            configsBtn[i].setSelected(false);                        
         }
+    }
+    
+    private void resetStatus(){
+        statusClickPrimary = statusClickSecondary = statusClickPrimaryDouble = statusClickDrag = false;
     }
     
     private void enableBtn(boolean status){        
-        for(int i=1; i < configs.length; i++){
-            configs[i].setEnabled(status);                        
-        }
-        
+        for(int i=1; i < configsBtn.length; i++){
+            configsBtn[i].setEnabled(status);                        
+        }        
+    }
+    
+    private void console(){
+        System.out.println("statusTimeClick: "+statusTimeClick);
+        System.out.println("statusClickPrimary: "+statusClickPrimary);
+        System.out.println("statusClickSecondary: "+statusClickSecondary);
+        System.out.println("statusClickPrimaryDouble: "+statusClickPrimaryDouble);
+        System.out.println("statusClickDrag: "+statusClickDrag);
+        System.out.println("------------------------------------------");
     }
 
     @SuppressWarnings("unchecked")
@@ -207,15 +235,16 @@ public class ConfigurationWindow extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void enableSystemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_enableSystemActionPerformed
-        boolean selected = enableSystem.isSelected();
-        if(selected){
-            enableBtn(true);
-            statusTimeClick = true;            
-        }else{
-            reset();
-            enableBtn(false);
-            statusTimeClick = false;
+        boolean selected = enableSystem.isSelected();        
+        statusTimeClick = selected;
+        if(selected)
+            enableBtn(true);                        
+        else{
+            resetSelected();
+            resetStatus();
+            enableBtn(false);            
         }
+        console();
             
     }//GEN-LAST:event_enableSystemActionPerformed
 
