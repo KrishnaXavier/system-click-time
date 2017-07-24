@@ -5,6 +5,10 @@
  */
 package application;
 
+import java.awt.Color;
+import javax.swing.JButton;
+import javax.swing.JToggleButton;
+
 /**
  *
  * @author Krishna Pessoal
@@ -16,6 +20,19 @@ public class ConfigurationWindow extends javax.swing.JFrame {
      */
     public ConfigurationWindow() {
         initComponents();
+        getContentPane().setBackground(new Color(241,242,242));
+        setResizable(false);
+        styleButton(enableSystem);
+        styleButton(primary);
+        styleButton(doublePrimary);
+        styleButton(secondary);
+        styleButton(drag);
+        
+    }
+    
+    public void styleButton(JToggleButton button){
+        button.setBorderPainted(false);        
+        button.setFocusPainted(false);   
     }
 
     /**
@@ -35,7 +52,7 @@ public class ConfigurationWindow extends javax.swing.JFrame {
         doublePrimary = new javax.swing.JToggleButton();
         primary = new javax.swing.JToggleButton();
         secondary = new javax.swing.JToggleButton();
-        jToggleButton1 = new javax.swing.JToggleButton();
+        enableSystem = new javax.swing.JToggleButton();
 
         jLabel2.setFont(new java.awt.Font("Segoe UI Light", 1, 36)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(102, 102, 255));
@@ -65,29 +82,34 @@ public class ConfigurationWindow extends javax.swing.JFrame {
         jLabel3.setText("System of Click for Time");
         getContentPane().add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 21, 580, 37));
 
+        drag.setBackground(new java.awt.Color(153, 255, 153));
         drag.setFont(new java.awt.Font("Segoe UI Light", 1, 14)); // NOI18N
         drag.setText("Drag");
         drag.setFocusable(false);
         getContentPane().add(drag, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 231, 199, 40));
 
+        doublePrimary.setBackground(new java.awt.Color(153, 255, 153));
         doublePrimary.setFont(new java.awt.Font("Segoe UI Light", 1, 14)); // NOI18N
         doublePrimary.setText("Double Primary Click");
         doublePrimary.setFocusable(false);
         getContentPane().add(doublePrimary, new org.netbeans.lib.awtextra.AbsoluteConstraints(91, 231, 199, 40));
 
+        primary.setBackground(new java.awt.Color(153, 255, 153));
         primary.setFont(new java.awt.Font("Segoe UI Light", 1, 14)); // NOI18N
         primary.setText("Primary Click (left)");
         primary.setFocusable(false);
         getContentPane().add(primary, new org.netbeans.lib.awtextra.AbsoluteConstraints(91, 185, 199, 40));
 
+        secondary.setBackground(new java.awt.Color(153, 255, 153));
         secondary.setFont(new java.awt.Font("Segoe UI Light", 1, 14)); // NOI18N
         secondary.setText("Secondary Click (right)");
         secondary.setFocusable(false);
         getContentPane().add(secondary, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 185, 199, 40));
 
-        jToggleButton1.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
-        jToggleButton1.setText("Enable");
-        getContentPane().add(jToggleButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 110, 210, -1));
+        enableSystem.setBackground(new java.awt.Color(153, 255, 153));
+        enableSystem.setFont(new java.awt.Font("Segoe UI", 1, 24)); // NOI18N
+        enableSystem.setText("Enable");
+        getContentPane().add(enableSystem, new org.netbeans.lib.awtextra.AbsoluteConstraints(190, 110, 210, -1));
 
         setSize(new java.awt.Dimension(616, 439));
         setLocationRelativeTo(null);
@@ -131,11 +153,11 @@ public class ConfigurationWindow extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JToggleButton doublePrimary;
     private javax.swing.JToggleButton drag;
+    private javax.swing.JToggleButton enableSystem;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JTextField jTextField1;
-    private javax.swing.JToggleButton jToggleButton1;
     private javax.swing.JToggleButton primary;
     private javax.swing.JToggleButton secondary;
     // End of variables declaration//GEN-END:variables
