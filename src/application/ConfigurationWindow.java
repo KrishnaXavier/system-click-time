@@ -1,12 +1,6 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package application;
 
 import java.awt.Color;
-import javax.swing.JButton;
 import javax.swing.JToggleButton;
 
 /**
@@ -15,9 +9,14 @@ import javax.swing.JToggleButton;
  */
 public class ConfigurationWindow extends javax.swing.JFrame {
 
-    /**
-     * Creates new form ConfigurationWindow
-     */
+    /* para o(s) clique(s) de TEMPO do MOUSE */
+    private static int     timeClick                = 3000;
+    private static boolean statusTimeClick          = false;     
+    private static boolean statusClickPrimary       = false;  /* Button Left Mouse          */
+    private static boolean statusClickSecondary     = false; /* Button Right Mouse          */
+    private static boolean statusClickPrimaryDouble = false; /* Button Left Double Mouse    */
+    private static boolean statusClickDrag          = false; /* Function Drag Itens/Folder  */
+    
     public ConfigurationWindow() {
         initComponents();
         getContentPane().setBackground(new Color(241,242,242));
@@ -29,6 +28,54 @@ public class ConfigurationWindow extends javax.swing.JFrame {
         styleButton(drag);
         
     }
+
+    public static void setTimeClick(int timeClick) {
+        ConfigurationWindow.timeClick = timeClick;
+    }
+
+    public static void setStatusTimeClick(boolean statusTimeClick) {
+        ConfigurationWindow.statusTimeClick = statusTimeClick;
+    }
+
+    public static void setStatusClickPrimary(boolean statusClickPrimary) {
+        ConfigurationWindow.statusClickPrimary = statusClickPrimary;
+    }
+
+    public static void setStatusClickSecondary(boolean statusClickSecondary) {
+        ConfigurationWindow.statusClickSecondary = statusClickSecondary;
+    }
+
+    public static void setStatusClickPrimaryDouble(boolean statusClickPrimaryDouble) {
+        ConfigurationWindow.statusClickPrimaryDouble = statusClickPrimaryDouble;
+    }
+
+    public static void setStatusClickDrag(boolean statusClickDrag) {
+        ConfigurationWindow.statusClickDrag = statusClickDrag;
+    }
+
+    public static int getTimeClick() {
+        return timeClick;
+    }
+
+    public static boolean isStatusTimeClick() {
+        return statusTimeClick;
+    }
+
+    public static boolean isStatusClickPrimary() {
+        return statusClickPrimary;
+    }
+
+    public static boolean isStatusClickSecondary() {
+        return statusClickSecondary;
+    }
+
+    public static boolean isStatusClickPrimaryDouble() {
+        return statusClickPrimaryDouble;
+    }
+
+    public static boolean isStatusClickDrag() {
+        return statusClickDrag;
+    }        
     
     public void styleButton(JToggleButton button){
         button.setBorderPainted(false);        
