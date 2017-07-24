@@ -33,18 +33,15 @@ public class ConfigurationWindow extends javax.swing.JFrame {
         configsBtn[id].setSelected(true);        
         resetStatus();
         
-        switch (id) {
-            case 0:
-                config.setStatusTimeClick(true);
-                break;
+        switch (id) {            
             case 1:
                 config.setStatusClickPrimary(true);
                 break;
-            case 2:
-                config.setStatusClickSecondary(true);
+            case 2:                
+                config.setStatusClickPrimaryDouble(true);
                 break;
             case 3:
-                config.setStatusClickPrimaryDouble(true);
+                config.setStatusClickSecondary(true);
                 break;     
             case 4:
                 config.setStatusClickDrag(true);
@@ -60,9 +57,9 @@ public class ConfigurationWindow extends javax.swing.JFrame {
     }
     
     private static void resetStatus(){
-        config.setStatusTimeClick(false);
-        config.setStatusClickSecondary(false);
+        config.setStatusClickPrimary(false);
         config.setStatusClickPrimaryDouble(false);
+        config.setStatusClickSecondary(false);        
         config.setStatusClickDrag(false);
     }
     

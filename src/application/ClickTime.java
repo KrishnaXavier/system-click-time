@@ -31,9 +31,8 @@ public class ClickTime {
         }        
     }
 
-    public static void mousePositionReading() {
-        System.out.println("isStatusTimeClic: "+config.isStatusTimeClick());
-        if(config.isStatusTimeClick()){            
+    public static void mousePositionReading() {        
+        if(config.isStatusTimeClick()){      
             java.awt.Point p = java.awt.MouseInfo.getPointerInfo().getLocation();
 
             if (previousCoordinatesX == p.x && previousCoordinatesY == p.y && coordinatesEqualControl == 0) {

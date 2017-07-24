@@ -9,7 +9,7 @@ import java.util.TimerTask;
  */
 public class Main {
 
-    public static final long task1_TEMPO = 1000;
+    public static final long task1_TEMPO = 100;
     private static ClickTime clickTime;
    
     public static void main(String[] args) {
@@ -28,7 +28,7 @@ public class Main {
             TimerTask task1 = new TimerTask() {
                 public void run() {
                     try {                        
-                        //clickTime.mousePositionReading();
+                        clickTime.mousePositionReading();
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
