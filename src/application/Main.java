@@ -9,7 +9,7 @@ import java.util.TimerTask;
  */
 public class Main {
 
-    public static final long task1_TEMPO = 100;
+    public static final long task1_TEMPO = 20;
     private static ClickTime clickTime;
    
     public static void main(String[] args) {
