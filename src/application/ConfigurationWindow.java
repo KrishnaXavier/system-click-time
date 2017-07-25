@@ -69,6 +69,10 @@ public class ConfigurationWindow extends javax.swing.JFrame {
         }                
     }
     
+    public static int getTime(){
+        return Integer.parseInt( time.getText() ) * 1000;
+    }
+    
     private static void console(){
         System.out.println("statusTimeClick: "+config.isStatusTimeClick());
         System.out.println("statusClickPrimary: "+config.isStatusClickPrimary());
@@ -91,7 +95,6 @@ public class ConfigurationWindow extends javax.swing.JFrame {
         secondary = new javax.swing.JToggleButton();
         enableSystem = new javax.swing.JToggleButton();
         drag = new javax.swing.JToggleButton();
-        confirmTime = new javax.swing.JButton();
 
         jLabel2.setFont(new java.awt.Font("Segoe UI Light", 1, 36)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(102, 102, 255));
@@ -108,12 +111,20 @@ public class ConfigurationWindow extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(102, 102, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Time for Click (seconds)");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 352, 580, 37));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(200, 310, 320, 37));
 
         time.setFont(new java.awt.Font("Segoe UI Light", 1, 24)); // NOI18N
         time.setHorizontalAlignment(javax.swing.JTextField.CENTER);
         time.setText("3");
-        getContentPane().add(time, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 310, 70, -1));
+        time.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                timeKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                timeKeyReleased(evt);
+            }
+        });
+        getContentPane().add(time, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 310, 70, -1));
 
         jLabel3.setFont(new java.awt.Font("Segoe UI Light", 1, 36)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(102, 102, 255));
@@ -184,16 +195,6 @@ public class ConfigurationWindow extends javax.swing.JFrame {
         });
         getContentPane().add(drag, new org.netbeans.lib.awtextra.AbsoluteConstraints(300, 231, 199, 40));
 
-        confirmTime.setBackground(new java.awt.Color(204, 204, 204));
-        confirmTime.setFont(new java.awt.Font("Segoe UI Light", 1, 14)); // NOI18N
-        confirmTime.setText("Confirm Time");
-        confirmTime.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                confirmTimeActionPerformed(evt);
-            }
-        });
-        getContentPane().add(confirmTime, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 310, 170, 40));
-
         setSize(new java.awt.Dimension(616, 439));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
@@ -229,12 +230,16 @@ public class ConfigurationWindow extends javax.swing.JFrame {
     }//GEN-LAST:event_primaryKeyPressed
 
     private void dragActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_dragActionPerformed
-        // TODO add your handling code here:
+        control(4);
     }//GEN-LAST:event_dragActionPerformed
 
-    private void confirmTimeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmTimeActionPerformed
-        config.setTimeClick(Integer.parseInt(time.getText()) * 1000);
-    }//GEN-LAST:event_confirmTimeActionPerformed
+    private void timeKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_timeKeyPressed
+        
+    }//GEN-LAST:event_timeKeyPressed
+
+    private void timeKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_timeKeyReleased
+        time.setText(time.getText().replaceAll("[^1-9]", ""));
+    }//GEN-LAST:event_timeKeyReleased
 
     /**
      * @param args the command line arguments
@@ -272,7 +277,6 @@ public class ConfigurationWindow extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton confirmTime;
     private static javax.swing.JToggleButton doublePrimary;
     private static javax.swing.JToggleButton drag;
     private static javax.swing.JToggleButton enableSystem;

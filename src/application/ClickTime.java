@@ -15,7 +15,7 @@ public class ClickTime {
     public static boolean statusClickDragFirstPass = true;
     private static final int INTERVALCLICK = 50;    
 
-    public static Configuration config = new Configuration();    
+    public static Configuration config = new Configuration();      
     
     public static String amb = "dev";
 

@@ -10,7 +10,7 @@ public class Configuration {
     public static ConfigurationWindow configWindow;
 
     public static int getTimeClick() {        
-        return timeClick;
+        return configWindow.getTime();
     }
 
     public static boolean isStatusTimeClick() {
